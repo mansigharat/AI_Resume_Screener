@@ -1,17 +1,3 @@
-"""
-Backend for the Resume Reviewer frontend.
-
-This wraps your existing resume-scoring logic in a small FastAPI server so the
-browser has something safe to talk to. The Groq API key stays on this server
-and is never sent to the browser.
-
-Run it with:
-    pip install fastapi uvicorn openai pydantic python-dotenv --break-system-packages
-    uvicorn backend:app --reload --port 8000
-
-Make sure GROQ_API_KEY is set in a .env file in this same folder.
-"""
-
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, field_validator
@@ -23,8 +9,6 @@ load_dotenv()
 
 app = FastAPI()
 
-# Allows a locally opened HTML file (or localhost dev server) to call this API.
-# Tighten this to your real frontend URL once you deploy anywhere.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
